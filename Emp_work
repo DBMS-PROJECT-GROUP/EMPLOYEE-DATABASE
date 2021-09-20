@@ -1,9 +1,1 @@
 
-CREATE TABLE employee (
-	emp_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	ename VARCHAR(30) NOT NULL,
-	dob DATE,
-	doj DATE,
-	sal DECIMAL,
-	dept_id INTEGER REFERENCES department(dept_id)
-);
