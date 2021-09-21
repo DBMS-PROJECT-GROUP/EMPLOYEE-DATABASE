@@ -17,3 +17,15 @@ INSERT INTO employee(emp_name,emp_id,doj,sal) VALUES
 ('Aishwarya L','1113','2017-07-19','40000'),
 ('Megha R','1114','2018-11-30','42000'),
 ('Fathima S','1115','2016-05-25','45000');
+
+CREATE TABLE department (dept_id INTEGER PRIMARY KEY AUTO_INCREMENT,dept_name VARCHAR(30));
+
+INSERT INTO department (dept_name) VALUES 
+('General Management'),
+('Marketing Department'),
+('Operations Department'),
+('Finance Department'),
+('Sales Department'),
+('Human Resource Department'),
+('Purchase Department');
+
