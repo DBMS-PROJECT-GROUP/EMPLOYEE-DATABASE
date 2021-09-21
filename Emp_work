@@ -29,3 +29,4 @@ INSERT INTO department (dept_name) VALUES
 ('Human Resource Department'),
 ('Purchase Department');
 
+CREATE TABLE lEAVES (l_date DATE NOT NULL ,l_reason VARCHAR(30), emp_id INT REFERENCES employee(emp_id));
