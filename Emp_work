@@ -72,3 +72,9 @@ INSERT INTO department (dept_name) VALUES
 ('Purchase Department');
 
 CREATE TABLE lEAVES (l_date DATE NOT NULL ,l_reason VARCHAR(30), emp_id INT REFERENCES employee(emp_id));
+INSERT INTO LEAVES (emp_id,l_date,l_reason) VALUES 
+('1100','2018-07-01','Sick Leave'),
+('1101','2019-01-02','Casual Leave'),
+('1102','2019-10-10','Marriage Leave'),
+('1108','2019-11-20','Casual Leave'),
+('1113','2017-12-18','Maternity Leave');
