@@ -1,3 +1,29 @@
+//display names of employee of a certain department 
+DELIMITER $$
+CREATE PROCEDURE show_emp_names(id INT)
+BEGIN 
+	DECLARE F INT DEFAULT 0;
+	DECLARE fname VARCHAR(50);
+	DECLARE emp_names VARCHAR(5000) DEFAULT ' '; 
+	DECLARE cur CURSOR FOR SELECT emp_name FROM employee WHERE dept_id=id;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET f=1;
+	OPEN cur;
+	loop1: LOOP
+		FETCH cur INTO fname;
+		IF f=1 THEN
+			LEAVE loop1;
+		END IF;
+		SET emp_names = CONCAT(emp_names, fname, ', ');
+	END LOOP loop1;
+	CLOSE cur;
+	SELECT emp_names;
+END$$
+DELIMITER ; 
+
+//call procedure 
+CALL show_emp_names(4);
+
+
 //function display salary of employee in certain dept where the sal is greater than 50000
 DELIMITER $$
 CREATE FUNCTION display_sal_count(id INT )
