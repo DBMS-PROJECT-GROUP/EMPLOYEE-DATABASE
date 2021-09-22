@@ -1,3 +1,19 @@
+//function display salary of employee in certain dept where the sal is greater than 50000
+DELIMITER $$
+CREATE FUNCTION display_sal_count(id INT )
+RETURNS INT
+BEGIN 
+	DECLARE count_of_emp INT DEFAULT 0;
+	SELECT COUNT(emp_id) FROM employee WHERE sal>50000 AND dept_id =id INTO count_of_emp;
+	RETURN count_of_emp;
+END $$
+DELIMITER ;
+
+//call function
+SELECT display_sal_count(7);
+
+
+
 CREATE TABLE employee (emp_name VARCHAR(30) NOT NULL,emp_id INTEGER PRIMARY KEY,doj DATE,sal DECIMAL,dept_id INT REFERENCES department(dept_id));
 
 INSERT INTO employee(emp_name,emp_id,doj,sal,dept_id) VALUES 
