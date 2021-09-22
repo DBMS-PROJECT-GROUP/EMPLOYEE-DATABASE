@@ -1,6 +1,6 @@
 CREATE TABLE employee (emp_name VARCHAR(30) NOT NULL,emp_id INTEGER PRIMARY KEY,doj DATE,sal DECIMAL,dept_id INT REFERENCES department(dept_id));
 
-INSERT INTO employee(emp_name,emp_id,doj,sal,) VALUES 
+INSERT INTO employee(emp_name,emp_id,doj,sal,dept_id) VALUES 
 ('Jacob T','1100','2016-05-16','30000','5'),
 ('Hareesh K','1101','2018-05-19','40000','1'),
 ('Rahul R','1102','2019-01-03','35000','2'),
