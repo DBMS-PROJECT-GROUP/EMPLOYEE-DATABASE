@@ -1,3 +1,18 @@
+//Trigger to check employee leave not exceeds 3
+DELIMITER $$
+DROP TRIGGER IF EXISTS check_for_leave;
+CREATE TRIGGER check_for_leave
+BEFORE INSERT ON leaves FOR EACH ROW 
+BEGIN 
+	DECLARE c INT ;
+	SELECT COUNT(emp_id) FROM leaves WHERE emp_id=NEW.emp_id INTO c;
+	IF c>=3 THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Not More than 3 leaves are allowed';
+	END IF;
+END $$
+DELIMITER ;
+
+
 //display names of employee of a certain department 
 DELIMITER $$
 CREATE PROCEDURE show_emp_names(id INT)
