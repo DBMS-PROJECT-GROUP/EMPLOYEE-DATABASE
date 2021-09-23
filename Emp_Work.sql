@@ -157,4 +157,12 @@ INSERT INTO LEAVES (emp_id,l_date,l_reason) VALUES
 ('1108','2019-11-20','Casual Leave'),
 ('1113','2017-12-18','Maternity Leave');
 
+CREATE TABLE BONUS (emp_id INT REFERENCES employee(emp_id), bonus DECIMAL);
+INSERT INTO BONUS (emp_id,bonus) VALUES
+('1108','250000'),
+('1103','100000'),
+('1113','120000'),
+('1105','150000'),
+('1101','125000');
+
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
