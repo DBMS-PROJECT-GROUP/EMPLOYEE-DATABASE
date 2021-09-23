@@ -1,3 +1,27 @@
+//Trigger : to check no two leaves are taken for same reason
+DELIMITER $$
+DROP TRIGGER IF EXISTS check_for_same_reason;
+CREATE TRIGGER check_for_same_reason
+BEFORE INSERT ON leaves FOR EACH ROW 
+BEGIN 
+	DECLARE f INT DEFAULT 0;
+	DECLARE leave_reason VARCHAR(30);
+	DECLARE cur CURSOR FOR SELECT l_reason FROM leaves WHERE emp_id = NEW.emp_id;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET f=1;
+	OPEN cur;
+	loop1 : LOOP
+		FETCH cur INTO leave_reason;
+		IF f=1 THEN 
+			LEAVE loop1;
+		ELSEIF leave_reason = NEW.l_reason THEN 
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='No two leaves are allowed for same reason';
+		END IF;
+	END LOOP loop1;
+	CLOSE cur;
+END $$
+DELIMITER ;
+
+
 //Trigger to check employee leave not exceeds 3
 DELIMITER $$
 DROP TRIGGER IF EXISTS check_for_leave;
