@@ -117,3 +117,5 @@ INSERT INTO LEAVES (emp_id,l_date,l_reason) VALUES
 ('1102','2019-10-10','Marriage Leave'),
 ('1108','2019-11-20','Casual Leave'),
 ('1113','2017-12-18','Maternity Leave');
+
+CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
