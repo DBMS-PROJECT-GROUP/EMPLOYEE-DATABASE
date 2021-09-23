@@ -1,3 +1,15 @@
+//Trigger : to backup the details of employee who are deleted 
+DROP TRIGGER IF EXISTS employee_backup;
+DELIMITER $$
+CREATE TRIGGER employee_backup
+AFTER DELETE ON employee FOR EACH ROW 
+BEGIN 
+	INSERT INTO emp_backup(e_id,e_name,doj,sal,d_id) VALUES 
+	(OLD.emp_id,OLD.emp_name,OLD.doj,OLD.sal,OLD.dept_id);
+END$$
+DELIMITER ;
+
+
 //Trigger : to check no two leaves are taken for same reason
 DELIMITER $$
 DROP TRIGGER IF EXISTS check_for_same_reason;
