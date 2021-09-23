@@ -1,3 +1,30 @@
+//Procedure to display the names of employees which are deleted
+DROP PROCEDURE if EXISTS show_deleted_emp_names;
+DELIMITER $$
+CREATE PROCEDURE show_deleted_emp_names()
+BEGIN 
+	DECLARE f INT DEFAULT 0;
+	DECLARE fname VARCHAR(50);
+	DECLARE emp_names VARCHAR(5000) DEFAULT ' '; 
+	DECLARE cur CURSOR FOR SELECT e_name FROM emp_backup;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET f=1;
+	OPEN cur;
+	loop1: LOOP
+		FETCH cur INTO fname;
+		IF f=1 THEN
+			LEAVE loop1;
+		END IF;
+		SET emp_names = CONCAT(emp_names, fname, ', ');
+	END LOOP loop1;
+	CLOSE cur;
+	SELECT emp_names;
+END$$
+DELIMITER ; 
+
+//call procedure 
+CALL show_deleted_emp_names();
+
+
 //Trigger : to backup the details of employee who are deleted 
 DROP TRIGGER IF EXISTS employee_backup;
 DELIMITER $$
@@ -53,7 +80,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE show_emp_names(id INT)
 BEGIN 
-	DECLARE F INT DEFAULT 0;
+	DECLARE f INT DEFAULT 0;
 	DECLARE fname VARCHAR(50);
 	DECLARE emp_names VARCHAR(5000) DEFAULT ' '; 
 	DECLARE cur CURSOR FOR SELECT emp_name FROM employee WHERE dept_id=id;
