@@ -191,4 +191,11 @@ INSERT INTO bonus (bonus_id ,emp_id,bonus_amount ) VALUES
 ('B125',1105,1500.00),
 ('B126',1101,1250.00);
 
+CREATE TABLE company(cmp_name VARCHAR(50) NOT NULL , cmp_id INTEGER NOT NULL , turnover DECIMAL , profit DECIMAL);
+INSERT INTO company (cmp_name,cmp_id,turnover,profit) VALUES 
+('GADS Solutions','1001',NULL,NULL),
+('Infosys','1002',NULL,NULL),
+('Tata Consultancy Services','1003',NULL,NULL),
+('UST Global','1004',NULL,NULL);
+
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
