@@ -193,7 +193,7 @@ INSERT INTO bonus (bonus_id ,emp_id,bonus_amount ) VALUES
 
 CREATE TABLE company(cmp_name VARCHAR(50) NOT NULL , cmp_id INTEGER NOT NULL , turnover DECIMAL , profit DECIMAL);
 INSERT INTO company (cmp_name,cmp_id,turnover,profit) VALUES 
-('GADS Solutions','1001',NULL,NULL),
+('ACM Solutions','1001',NULL,NULL),
 ('Infosys','1002',NULL,NULL),
 ('Tata Consultancy Services','1003',NULL,NULL),
 ('UST Global','1004',NULL,NULL);
