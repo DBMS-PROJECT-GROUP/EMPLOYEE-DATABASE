@@ -1,3 +1,29 @@
+//Procedure to update the salary of employee having bonus and delete the record from bonus
+DELIMITER $$
+CREATE PROCEDURE update_salary()
+BEGIN 
+	DECLARE f INT ;
+	DECLARE id INT ;
+	DECLARE bon DECIMAL;
+	DECLARE b_id VARCHAR(8);
+	DECLARE cur CURSOR  FOR SELECT bonus_id, emp_id,bonus_amount FROM bonus;
+	DECLARE CONTINUE handler FOR NOT FOUND SET f=1;
+	OPEN cur;
+	loop1 : loop
+		fetch cur INTO b_id,id,bon;
+		if f=1 then 
+			leave loop1;
+		END if;
+		UPDATE employee SET sal = sal + bon WHERE emp_id = id ;
+		DELETE FROM bonus WHERE bonus_id=b_id;
+	END LOOP loop1;
+	close cur;
+END$$
+DELIMITER ;
+
+//calling procedure 
+CALL update_salary();
+
 //Procedure to display the names of employees which are deleted
 DROP PROCEDURE if EXISTS show_deleted_emp_names;
 DELIMITER $$
@@ -157,12 +183,12 @@ INSERT INTO LEAVES (emp_id,l_date,l_reason) VALUES
 ('1108','2019-11-20','Casual Leave'),
 ('1113','2017-12-18','Maternity Leave');
 
-CREATE TABLE BONUS (emp_id INT REFERENCES employee(emp_id), bonus DECIMAL(7,2));
-INSERT INTO BONUS (emp_id,bonus) VALUES
-('1108',2500.00),
-('1103',1000.00),
-('1113',1200.00),
-('1105',1500.00),
-('1101',1250.00);
+CREATE TABLE bonus (bonus_id VARCHAR(6) primary key,emp_id INT REFERENCES employee(emp_id), bonus_amount DECIMAL(7,2));
+INSERT INTO bonus (bonus_id ,emp_id,bonus_amount ) VALUES
+('B122',1108,2500.00),
+('B123',1103,1000.00),
+('B124',1113,1200.00),
+('B125',1105,1500.00),
+('B126',1101,1250.00);
 
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
