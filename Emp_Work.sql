@@ -1,3 +1,28 @@
+//Procedure to calculate profit 
+DELIMITER $$
+CREATE PROCEDURE calculate_profit()
+BEGIN
+	DECLARE f INT DEFAULT 0;
+	DECLARE total DECIMAL;
+	DECLARE c_id INT ;
+	DECLARE t_over DECIMAL;
+	DECLARE cur CURSOR FOR SELECT cmp_id, turnover FROM company;
+	DECLARE CONTINUE handler FOR NOT FOUND SET f=1;
+	OPEN cur;
+	loop1 : LOOP
+		fetch cur INTO c_id,t_over;
+		if f=1 then 
+			leave loop1;
+		END if;
+		select total_sal_of_emp(c_id) INTO total;
+		UPDATE company SET profit = t_over - total WHERE cmp_id = c_id;
+	END loop loop1;
+	close cur;
+END $$
+DELIMITER ;
+
+//call procedure 
+CALL calculate_profit();
 //Trigger to calculate total turn over
 DELIMITER $$
 CREATE TRIGGER total_turn_over
