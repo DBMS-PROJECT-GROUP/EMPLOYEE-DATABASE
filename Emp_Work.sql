@@ -160,20 +160,20 @@ INSERT INTO employee(emp_name,emp_id,doj,sal,dept_id) VALUES
 ('Kiran K',1110,'2019-09-09',52000,4),
 ('Thomas S',1111,'2018-02-17',54000,3),
 ('Sanal S',1112,'2017-11-18',35000,2),
-('Aishwarya L',1113,2017-07-19,40000,1),
+('Aishwarya L',1113,'2017-07-19',40000,1),
 ('Megha R',1114,'2018-11-30',42000,7),
 ('Fathima S',1115,'2016-05-25',45000,1);
 
-CREATE TABLE department (dept_id INTEGER PRIMARY KEY AUTO_INCREMENT,dept_name VARCHAR(30));
+CREATE TABLE department (dept_id INTEGER PRIMARY KEY AUTO_INCREMENT,dept_name VARCHAR(30),cmp_id INT REFERENCES company(cmp_id));
 
-INSERT INTO department (dept_name) VALUES 
-('General Management'),
-('Marketing Department'),
-('Operations Department'),
-('Finance Department'),
-('Sales Department'),
-('Human Resource Department'),
-('Purchase Department');
+INSERT INTO department (dept_name,cmp_id) VALUES 
+('General Management',1001),
+('Marketing Department',1002),
+('Operations Department',1003),
+('Finance Department',1004),
+('Sales Department',1001),
+('Human Resource Department',1002),
+('Purchase Department',1003);
 
 CREATE TABLE lEAVES (l_date DATE NOT NULL ,l_reason VARCHAR(30), emp_id INT REFERENCES employee(emp_id));
 INSERT INTO LEAVES (emp_id,l_date,l_reason) VALUES 
@@ -191,22 +191,23 @@ INSERT INTO bonus (bonus_id ,emp_id,bonus_amount ) VALUES
 ('B125',1105,1500.00),
 ('B126',1101,1250.00);
 
-CREATE TABLE company(cmp_name VARCHAR(50) NOT NULL , cmp_id INTEGER NOT NULL , turnover DECIMAL , profit DECIMAL);
-INSERT INTO company (cmp_name,cmp_id,turnover,profit) VALUES 
-('ACM Solutions',1001,NULL,NULL),
-('Infosys',1002,NULL,NULL),
-('Tata Consultancy Services',1003,NULL,NULL),
-('UST Global',1004,NULL,NULL);
+CREATE TABLE company(cmp_name VARCHAR(50) NOT NULL , cmp_id INTEGER NOT NULL , turnover DECIMAL , profit DECIMAL,project_id INT REFERENCES project(project_id));
 
-CREATE TABLE projects (project_id INTEGER PRIMARY KEY AUTO_INCREMENT,project_name VARCHAR(50),sal DECIMAL, period VARCHAR(50));
-INSERT INTO projects (project_name,sal,period) VALUES 
-('Hacking Software',500000,'30 days'),
-('Security Software',475000,'25 days'),
-('Medical Software',450000,'20 days'),
-('Teaching Software',425000,'15 days'),
-('Mechanical Software',400000,'14 days'),
-('AI Software',375000,'13 days'),
-('IOT Software',350000,'12 days'),
-('Editing Software',325000,'10 days');
+INSERT INTO company (cmp_name,cmp_id) VALUES 
+('ACM Solutions',1001),
+('Infosys',1002),
+('Tata Consultancy Services',1003),
+('UST Global',1004);
+
+CREATE TABLE projects (project_id INTEGER PRIMARY KEY ,project_name VARCHAR(50),sal DECIMAL, period VARCHAR(50),cmp_id INT REFERENCES company(cmp_id));
+INSERT INTO projects (project_id ,project_name,sal,period,cmp_id) VALUES 
+(1231,'Hacking Software',500000,'30 days',1001),
+(1232,'Security Software',475000,'25 days',1002),
+(1233,'Medical Software',450000,'20 days',1003),
+(1234,'Teaching Software',425000,'15 days',1004),
+(1235,'Mechanical Software',400000,'14 days',1005),
+(1236,'AI Software',375000,'13 days',1006),
+(1237,'IOT Software',350000,'12 days',1007),
+(1238,'Editing Software',325000,'10 days',1008);
 
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
