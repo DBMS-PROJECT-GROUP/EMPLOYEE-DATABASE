@@ -1,3 +1,14 @@
+//function total_sal_of_emp
+CREATE FUNCTION total_sal_of_emp(id INT)
+RETURNS DECIMAL 
+BEGIN 
+	DECLARE total DECIMAL;
+	SELECT SUM(emp.sal) FROM (employee AS emp NATURAL JOIN department AS dept) INNER JOIN (company AS cmp NATURAL JOIN projects AS prj)
+	ON cmp.cmp_id = dept.cmp_id AND prj.project_id = dept.project_id WHERE cmp.cmp_id = id INTO total;
+	RETURN total;
+END $$
+DELIMITER ;
+
 //Procedure to update the salary of employee having bonus and delete the record from bonus
 DELIMITER $$
 CREATE PROCEDURE update_salary()
