@@ -1,3 +1,13 @@
+//Trigger to calculate total turn over
+DELIMITER $$
+CREATE TRIGGER total_turn_over
+AFTER INSERT ON projects FOR EACH ROW 
+BEGIN 
+	UPDATE company SET turnover = turnover + NEW.sal WHERE company.cmp_id = NEW.cmp_id;
+END $$
+DELIMITER ;
+
+
 //function total_sal_of_emp
 CREATE FUNCTION total_sal_of_emp(id INT)
 RETURNS DECIMAL 
