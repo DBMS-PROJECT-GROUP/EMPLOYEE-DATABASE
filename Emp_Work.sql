@@ -164,16 +164,18 @@ INSERT INTO employee(emp_name,emp_id,doj,sal,dept_id) VALUES
 ('Megha R',1114,'2018-11-30',42000,7),
 ('Fathima S',1115,'2016-05-25',45000,1);
 
-CREATE TABLE department (dept_id INTEGER PRIMARY KEY AUTO_INCREMENT,dept_name VARCHAR(30),cmp_id INT REFERENCES company(cmp_id));
+CREATE TABLE department (dept_id INTEGER PRIMARY KEY AUTO_INCREMENT,dept_name VARCHAR(30),cmp_id INT REFERENCES company(cmp_id),
+project_id INT REFERENCES projects(project_id));
 
-INSERT INTO department (dept_name,cmp_id) VALUES 
-('General Management',1001),
-('Marketing Department',1002),
-('Operations Department',1003),
-('Finance Department',1004),
-('Sales Department',1001),
-('Human Resource Department',1002),
-('Purchase Department',1003);
+INSERT INTO department (dept_name,cmp_id,project_id) VALUES 
+('General Management',1001,1231),
+('Marketing Department',1002,1232),
+('Operations Department',1003,1233),
+('Finance Department',1004,1234),
+('Sales Department',1001,1235),
+('Human Resource Department',1002,1236),
+('Purchase Department',1003,1237),
+('Learning and development',1004,1238);
 
 CREATE TABLE lEAVES (l_date DATE NOT NULL ,l_reason VARCHAR(30), emp_id INT REFERENCES employee(emp_id));
 INSERT INTO LEAVES (emp_id,l_date,l_reason) VALUES 
