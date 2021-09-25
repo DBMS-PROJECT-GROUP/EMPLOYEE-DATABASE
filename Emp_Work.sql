@@ -147,22 +147,22 @@ SELECT display_sal_count(7);
 CREATE TABLE employee (emp_name VARCHAR(30) NOT NULL,emp_id INTEGER PRIMARY KEY,doj DATE,sal DECIMAL,dept_id INT REFERENCES department(dept_id));
 
 INSERT INTO employee(emp_name,emp_id,doj,sal,dept_id) VALUES 
-('Jacob T','1100','2016-05-16','30000','5'),
-('Hareesh K','1101','2018-05-19','40000','1'),
-('Rahul R','1102','2019-01-03','35000','2'),
-('George J','1103','2019-10-31','33000','5'),
-('Varun D','1104','2018-08-15','45000','6'),
-('David B','1105','2017-06-22','42000','6'),
-('Derik J','1106','2019-03-04','41000','7'),
-('Ram G','1107','2015-09-17','46000','3'),
-('Ann Maria','1108','2019-03-10','50000','4'),
-('Reena H','1109','2017-12-13','53000','7'),
-('Kiran K','1110','2019-09-09','52000','4'),
-('Thomas S','1111','2018-02-17','54000','3'),
-('Sanal S','1112','2017-11-18','35000','2'),
-('Aishwarya L','1113','2017-07-19','40000','1'),
-('Megha R','1114','2018-11-30','42000','7'),
-('Fathima S','1115','2016-05-25','45000','1');
+('Jacob T',1100,'2016-05-16',30000,5),
+('Hareesh K',1101,'2018-05-19',40000,1),
+('Rahul R',1102,'2019-01-03',35000,2),
+('George J',1103,'2019-10-31',33000,5),
+('Varun D',1104,'2018-08-15',45000,6),
+('David B',1105,'2017-06-22',42000,6),
+('Derik J',1106,'2019-03-04',41000,7),
+('Ram G',1107,'2015-09-17',46000,3),
+('Ann Maria',1108,'2019-03-10',50000,4),
+('Reena H',1109,'2017-12-13',53000,7),
+('Kiran K',1110,'2019-09-09',52000,4),
+('Thomas S',1111,'2018-02-17',54000,3),
+('Sanal S',1112,'2017-11-18',35000,2),
+('Aishwarya L',1113,2017-07-19,40000,1),
+('Megha R',1114,'2018-11-30',42000,7),
+('Fathima S',1115,'2016-05-25',45000,1);
 
 CREATE TABLE department (dept_id INTEGER PRIMARY KEY AUTO_INCREMENT,dept_name VARCHAR(30));
 
@@ -177,11 +177,11 @@ INSERT INTO department (dept_name) VALUES
 
 CREATE TABLE lEAVES (l_date DATE NOT NULL ,l_reason VARCHAR(30), emp_id INT REFERENCES employee(emp_id));
 INSERT INTO LEAVES (emp_id,l_date,l_reason) VALUES 
-('1100','2018-07-01','Sick Leave'),
-('1101','2019-01-02','Casual Leave'),
-('1102','2019-10-10','Marriage Leave'),
-('1108','2019-11-20','Casual Leave'),
-('1113','2017-12-18','Maternity Leave');
+(1100,'2018-07-01','Sick Leave'),
+(1101,'2019-01-02','Casual Leave'),
+(1102,'2019-10-10','Marriage Leave'),
+(1108,'2019-11-20','Casual Leave'),
+(1113,'2017-12-18','Maternity Leave');
 
 CREATE TABLE bonus (bonus_id VARCHAR(6) primary key,emp_id INT REFERENCES employee(emp_id), bonus_amount DECIMAL(7,2));
 INSERT INTO bonus (bonus_id ,emp_id,bonus_amount ) VALUES
@@ -193,9 +193,9 @@ INSERT INTO bonus (bonus_id ,emp_id,bonus_amount ) VALUES
 
 CREATE TABLE company(cmp_name VARCHAR(50) NOT NULL , cmp_id INTEGER NOT NULL , turnover DECIMAL , profit DECIMAL);
 INSERT INTO company (cmp_name,cmp_id,turnover,profit) VALUES 
-('ACM Solutions','1001',NULL,NULL),
-('Infosys','1002',NULL,NULL),
-('Tata Consultancy Services','1003',NULL,NULL),
-('UST Global','1004',NULL,NULL);
+('ACM Solutions',1001,NULL,NULL),
+('Infosys',1002,NULL,NULL),
+('Tata Consultancy Services',1003,NULL,NULL),
+('UST Global',1004,NULL,NULL);
 
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
