@@ -205,9 +205,9 @@ INSERT INTO projects (project_id ,project_name,sal,period,cmp_id) VALUES
 (1232,'Security Software',475000,'25 days',1002),
 (1233,'Medical Software',450000,'20 days',1003),
 (1234,'Teaching Software',425000,'15 days',1004),
-(1235,'Mechanical Software',400000,'14 days',1005),
-(1236,'AI Software',375000,'13 days',1006),
-(1237,'IOT Software',350000,'12 days',1007),
-(1238,'Editing Software',325000,'10 days',1008);
+(1235,'Mechanical Software',400000,'14 days',1001),
+(1236,'AI Software',375000,'13 days',1002),
+(1237,'IOT Software',350000,'12 days',1003),
+(1238,'Editing Software',325000,'10 days',1004);
 
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
