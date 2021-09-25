@@ -200,13 +200,13 @@ INSERT INTO company (cmp_name,cmp_id,turnover,profit) VALUES
 
 CREATE TABLE projects (project_id INTEGER PRIMARY KEY AUTO_INCREMENT,project_name VARCHAR(50),sal DECIMAL, period VARCHAR(50));
 INSERT INTO projects (project_name,sal,period) VALUES 
-('Hacking Software','500000','1 month'),
-('Security Software','475000','25 days'),
-('Medical Software','450000','20 days'),
-('Teaching Software','425000','15 days'),
-('Mechanical Software','400000','14 days'),
-('AI Software','375000''13 days'),
-('IOT Software','350000','12 days'),
-('Editing Software','325000','10 days');
+('Hacking Software',500000,'30 days'),
+('Security Software',475000,'25 days'),
+('Medical Software',450000,'20 days'),
+('Teaching Software',425000,'15 days'),
+('Mechanical Software',400000,'14 days'),
+('AI Software',375000,'13 days'),
+('IOT Software',350000,'12 days'),
+('Editing Software',325000,'10 days');
 
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
