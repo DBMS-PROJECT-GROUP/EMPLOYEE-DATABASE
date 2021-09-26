@@ -258,4 +258,17 @@ INSERT INTO projects (project_id ,project_name,sal,period,cmp_id) VALUES
 (1237,'IOT Software',350000,'12 days',1003),
 (1238,'Editing Software',325000,'10 days',1004);
 
+CREATE TABLE manager (mng_name VARCHAR(30) NOT NULL,mng_id INTEGER PRIMARY KEY,doj DATE,sal DECIMAL,dept_id INT REFERENCES department(dept_id));
+
+INSERT INTO manager(mng_name,mng_id,doj,sal,dept_id) VALUES 
+('Rachel',1350,'2016-05-16',80000,1),
+('Michel',1351,'2018-05-19',70000,2),
+('Marlinson',1352,'2019-01-03',80000,3),
+('Robertson',1353,'2019-10-31',75000,4),
+('Herny',1354,'2018-08-15',85000,5),
+('Sedwick',1355,'2017-06-22',72000,6),
+('Zach',1356,'2019-03-04',81000,7),
+('Gabriella',1357,'2015-09-17',76000,8);
+
+
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
