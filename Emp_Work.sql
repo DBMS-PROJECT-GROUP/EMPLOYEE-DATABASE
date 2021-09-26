@@ -4,6 +4,7 @@ CREATE PROCEDURE calculate_profit()
 BEGIN
 	DECLARE f INT DEFAULT 0;
 	DECLARE total DECIMAL;
+	DECLARE total_2 DECIMAL;
 	DECLARE c_id INT ;
 	DECLARE t_over DECIMAL;
 	DECLARE cur CURSOR FOR SELECT cmp_id, turnover FROM company;
@@ -15,7 +16,8 @@ BEGIN
 			leave loop1;
 		END if;
 		select total_sal_of_emp(c_id) INTO total;
-		UPDATE company SET profit = t_over - total WHERE cmp_id = c_id;
+		select mng_sal_total(c_id) INTO total_2;
+		UPDATE company SET profit = t_over - (total + total_2) WHERE cmp_id = c_id;
 	END loop loop1;
 	close cur;
 END $$
@@ -29,6 +31,19 @@ CREATE TRIGGER total_turn_over
 AFTER INSERT ON projects FOR EACH ROW 
 BEGIN 
 	UPDATE company SET turnover = turnover + NEW.sal WHERE company.cmp_id = NEW.cmp_id;
+END $$
+DELIMITER ;
+
+
+//function to find total sal of manager
+DELIMITER $$
+CREATE FUNCTION mng_sal_total(id INT )
+RETURNS DECIMAL
+BEGIN 
+	DECLARE total DECIMAL ;
+	SELECT SUM(m.sal) FROM (manager AS m NATURAL JOIN department AS dept) INNER JOIN (company AS cmp NATURAL JOIN projects AS prj)
+	ON cmp.cmp_id = dept.cmp_id AND prj.project_id = dept.project_id WHERE cmp.cmp_id = id INTO total;
+	RETURN total;
 END $$
 DELIMITER ;
 
