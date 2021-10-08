@@ -254,7 +254,7 @@ INSERT INTO bonus (bonus_id ,emp_id,bonus_amount ) VALUES
 ('B125',1105,1500.00),
 ('B126',1101,1250.00);
 
-CREATE TABLE company(cmp_name VARCHAR(50) NOT NULL , cmp_id INTEGER NOT NULL , turnover DECIMAL , profit DECIMAL,project_id INT REFERENCES project(project_id));
+CREATE TABLE company(cmp_name VARCHAR(50) NOT NULL , cmp_id INTEGER NOT NULL , turnover DECIMAL , profit DECIMAL);
 
 INSERT INTO company (cmp_name,cmp_id) VALUES 
 ('ACM Solutions',1001),
