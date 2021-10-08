@@ -287,3 +287,8 @@ INSERT INTO manager(mng_name,mng_id,doj,sal,dept_id) VALUES
 
 
 CREATE TABLE emp_backup (e_id INT PRIMARY KEY ,e_name VARCHAR(30) NOT NULL , doj DATE ,sal DECIMAL(10,2), d_id INT );
+
+
+SELECT emp_name,TIMESTAMPDIFF(YEAR,doj,CURDATE()) AS 'Experience ' FROM employee GROUP BY emp_name;
+
+SELECT * FROM employee WHERE emp_name like 'A%';
